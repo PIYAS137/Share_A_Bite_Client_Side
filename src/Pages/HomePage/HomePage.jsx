@@ -1,7 +1,12 @@
+import FeaturedFood from "../../Components/FeaturedFood/FeaturedFood"
+import Slider from "../../Components/Slider/Slider"
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className="">
+        <Slider/>
+        <FeaturedFood/>
+    </div>
   )
 }
 
