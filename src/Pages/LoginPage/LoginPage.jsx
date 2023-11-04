@@ -38,7 +38,7 @@ const LoginPage = () => {
           <button type="submit" className="btn btn-primary">Log In with Google</button>
         </div>
         <div>
-          <p className=" dark:text-gray-400">Dont have an account? Go To <Link className=" font-semibold text-primary">Register Page</Link></p>
+          <p className=" dark:text-gray-400">Dont have an account? Go To <Link to={'/register'} className=" font-semibold text-primary">Register Page</Link></p>
         </div>
       </form>
     </div>
