@@ -1,5 +1,6 @@
 import { foodarr as fakeData } from "../../Components/FeaturedFood/FeaturedFood";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { useTable } from "react-table";
 
 // {
@@ -72,6 +73,7 @@ const ManageMyFoodsPage = () => {
           <div>
             <button className="btn btn-primary btn-sm" onClick={() => handleEdit(row)}>Edit</button>
             <button className="btn btn-error ml-2 btn-sm" onClick={() => handleDelete(row)}>Delete</button>
+            <button className="btn btn-info ml-2 btn-sm" onClick={() => handleDelete(row)}><Link to='/managesinglefood'>Manage</Link></button>
           </div>
   )},
       
