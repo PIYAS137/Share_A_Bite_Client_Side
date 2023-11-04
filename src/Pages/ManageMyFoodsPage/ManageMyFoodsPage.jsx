@@ -51,10 +51,6 @@ const ManageMyFoodsPage = () => {
         ),
       },
       {
-        Header: "Donor Name",
-        accessor: "donator_name",
-      },
-      {
         Header: "Food Quantity",
         accessor: "food_quantity",
       },
