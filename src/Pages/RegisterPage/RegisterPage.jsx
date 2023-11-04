@@ -18,11 +18,6 @@ const RegisterPage = () => {
 
 
 
-
-
-
-
-
   return (
     <div className=" h-screen w-full justify-center flex items-center">
       <form onSubmit={handleSubmit} className="card-body max-w-xl text-black -mt-48">

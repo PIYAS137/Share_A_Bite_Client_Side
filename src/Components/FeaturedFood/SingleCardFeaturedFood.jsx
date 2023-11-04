@@ -1,12 +1,10 @@
-// "id": 6,
-//       "food_name": "Fuck Him",
-//       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
-//       "donator_name": "Piyas Mahamude Alif",
-//       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
-//       "food_quantity": 10,
-//       "pickup_location": "Dhaka",
-//       "expired_date": "12/11/12",
-//       "additional_node": "The quick brown fox jumps over the lazy dog."
+import { Link } from "react-router-dom"
+
+
+
+
+
+
 const SingleCardFeaturedFood = ({data}) => {
     return (
         <div className="card bg-red-300 dark:bg-gray-800 shadow-xl overflow-hidden">
@@ -30,7 +28,7 @@ const SingleCardFeaturedFood = ({data}) => {
                 
                 <p>{data.additional_node}</p>
                 <div className="card-actions justify-center">
-                    <button className=" btn btn-primary btn-outline">View Details</button>
+                    <Link to={'/singlefoodview'}><button className=" btn btn-primary btn-outline">View Details</button></Link>
                 </div>
             </div>
         </div>

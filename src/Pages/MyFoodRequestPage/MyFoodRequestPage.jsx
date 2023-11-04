@@ -14,10 +14,10 @@ import { foodarr } from "../../Components/FeaturedFood/FeaturedFood"
 
 const MyFoodRequestPage = () => {
   return (
-    <div>
-      <h1 className=" text-center text-3xl my-5 mb-10 font-bold dark:text-white">My Food Request</h1>
+    <div className=" h-screen">
+      <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">My Food Request</h1>
       <div className="overflow-x-auto">
-        <table className="table border ">
+        <table className="table  ">
           {/* head */}
           <thead>
             <tr>
