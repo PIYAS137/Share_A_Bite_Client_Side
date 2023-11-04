@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import Logo from '../Assets/Logo.png'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 
@@ -72,7 +72,7 @@ const AppNavbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">LogIn</a>
+      <Link to={'/login'}><button className="btn">LogIn</button></Link>
       </div>
       <div className='ml-4 mr-2'>
         <label className="swap swap-rotate">
