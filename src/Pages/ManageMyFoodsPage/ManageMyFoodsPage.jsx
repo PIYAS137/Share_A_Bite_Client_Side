@@ -31,7 +31,7 @@ const ManageMyFoodsPage = () => {
         Header: "Status",
         accessor: "status",
         Cell: ({ row }) => (
-          <span className="status-span bg-red-500">asdf{row.original.status}</span>
+          <span className="status-span text-green-500 px-2 font-bold text-sm">available{row.original.status}</span>
         ),
       },
       {
@@ -66,10 +66,10 @@ const ManageMyFoodsPage = () => {
         Header: "Actions",
         accessor: "",
         Cell: ({ row }) => (
-          <div>
+          <div className=" flex flex-col xl:flex-row">
             <button className="btn btn-primary btn-sm" onClick={() => handleEdit(row)}>Edit</button>
-            <button className="btn btn-error ml-2 btn-sm" onClick={() => handleDelete(row)}>Delete</button>
-            <button className="btn btn-info ml-2 btn-sm" onClick={() => handleDelete(row)}><Link to='/managesinglefood'>Manage</Link></button>
+            <button className="btn btn-error xl:ml-2 btn-sm" onClick={() => handleDelete(row)}>Delete</button>
+            <button className="btn btn-info xl:ml-2 btn-sm" onClick={() => handleDelete(row)}><Link to='/managesinglefood'>Manage</Link></button>
           </div>
   )},
       
@@ -82,28 +82,14 @@ const ManageMyFoodsPage = () => {
     useTable({ columns, data });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
-    <div className="App">
-      <div className="container">
+    <div className="App overflow-x-scroll xl:overflow-hidden">
+      <div className="container mx-auto flex flex-col justify-center">
+      <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">Manage My Foods</h1>
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup,i) => (
-              <tr className=" bg-red-400" key={i} {...headerGroup.getHeaderGroupProps()}>
+              <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column,i) => (
                   <th className="px-10 border" key={i} {...column.getHeaderProps()}>
                     {column.render("Header")}
@@ -117,9 +103,9 @@ const ManageMyFoodsPage = () => {
             {rows.map((row,i) => {
               prepareRow(row);
               return (
-                <tr key={i} {...row.getRowProps()}>
+                <tr className=" border" key={i} {...row.getRowProps()}>
                   {row.cells.map((cell,i) => (
-                    <td key={i} {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    <td className=" text-center" key={i} {...cell.getCellProps()}> {cell.render("Cell")} </td>
                   ))}
                 </tr>
               );

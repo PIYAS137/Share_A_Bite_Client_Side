@@ -78,9 +78,7 @@ const SingleFoodDetailsPage = () => {
                   {/* if there is a button in form, it will close the modal */}
                   {/* <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button> */}
 
-
                   <h1 className=" text-center text-3xl font-bold dark:text-black">Request Food</h1>
-
 
                   <div className="  flex items-center justify-between">
                     <div>
@@ -107,18 +105,7 @@ const SingleFoodDetailsPage = () => {
                     </div>
                   </div>
 
-
-
-
-
-
-
-
-
-
                   <div className=" flex justify-between dark:text-black">
-
-
                     <div className="form-control w-full ">
                       <label className="label">
                         <span className="label-text dark:text-black">Expire Date</span>
@@ -149,8 +136,6 @@ const SingleFoodDetailsPage = () => {
                     </div>
                   </div>
 
-
-
                   <div className=" flex justify-between dark:text-black">
                     <div className="form-control">
                       <label className="label">
@@ -166,8 +151,6 @@ const SingleFoodDetailsPage = () => {
                     </div>
                   </div>
 
-
-
                   <div className="form-control w-full dark:text-black">
                     <label className="label">
                       <span className="label-text text-red-500 dark:text-black">Donate Money <span className=" font-bold">*</span></span>
@@ -176,10 +159,6 @@ const SingleFoodDetailsPage = () => {
                       type="number" placeholder="donation" className="input input-bordered w-full border-red-300" required />
                   </div>
 
-
-
-
-
                   <div className="form-control dark:text-black">
                     <label className="label">
                       <span className="label-text dark:text-black">Additional Information</span>
@@ -187,42 +166,18 @@ const SingleFoodDetailsPage = () => {
                     <textarea rows={3} onChange={e => setAdditional_info(e.target.value)} value={additional_info} type="text" placeholder="additional information" className="textarea input-bordered" required ></textarea>
                   </div>
 
-
                   <div className="form-control mt-6">
                     <button type="submit" className="btn btn-primary"><Link to={'/foodreq'}>Submit Request</Link></button>
                   </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </form>
               </div>
               <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
             </div>
 
-
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
-
-
     </div>
   )
 }
