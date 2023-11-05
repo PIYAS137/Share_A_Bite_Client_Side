@@ -4,11 +4,7 @@ import { Link } from "react-router-dom"
 
 const SingleFoodDetailsPage = () => {
 
-  const [modalStatus, setModalStatus] = useState(true)
 
-  const unClickOff = () => {
-    setModalStatus(false)
-  }
 
 
   const [food_name, setFood_name] = useState('')
@@ -37,7 +33,6 @@ const SingleFoodDetailsPage = () => {
       <div>
         <h1 className=" text-center text-3xl font-bold dark:text-white">Single Food View</h1>
 
-
         <div className="my-12 flex justify-center">
           <div className=" grid grid-cols-3 max-w-sm rounded-2xl overflow-hidden border border-red-300 gap-3 items-center">
             <div className=" col-span-1">
@@ -50,10 +45,6 @@ const SingleFoodDetailsPage = () => {
           </div>
         </div>
 
-
-
-
-
         <div className=" grid md:grid-cols-2 gap-10 pt-10 overflow-hidden">
           <div className="flex w-full justify-end">
             <img className=" max-w-full  rounded-lg " src='https://a.cdn-hotels.com/gdcs/production0/d1513/35c1c89e-408c-4449-9abe-f109068f40c0.jpg?impolicy=fcrop&w=800&h=533&q=medium' alt="" />
@@ -62,7 +53,7 @@ const SingleFoodDetailsPage = () => {
             <p className="font-semibold text-lg">Food name : </p>
             <p className="font-semibold text-lg">Food quantity : </p>
             <p className="font-semibold text-lg">Expire date/time : </p>
-            {/* <button onClick={() => document.getElementById('my_modal_3').showModal()} className="">Request for Food</button> */}
+
 
 
 
@@ -80,9 +71,10 @@ const SingleFoodDetailsPage = () => {
 
                   <h1 className=" text-center text-3xl font-bold dark:text-black">Request Food</h1>
 
-                  <div className="  flex items-center justify-between">
-                    <div>
-                      <div>
+                  <div className=" flex flex-col md:flex-row  items-center justify-between">
+                    <div className=" w-full
+                    ">
+                      <div className=" w-full ">
                         <div className="form-control dark:text-black">
                           <label className="label ">
                             <span className="label-text dark:text-black">Food Name</span>
@@ -105,7 +97,7 @@ const SingleFoodDetailsPage = () => {
                     </div>
                   </div>
 
-                  <div className=" flex justify-between dark:text-black">
+                  <div className=" flex flex-col md:flex-row justify-between dark:text-black">
                     <div className="form-control w-full ">
                       <label className="label">
                         <span className="label-text dark:text-black">Expire Date</span>
@@ -113,7 +105,7 @@ const SingleFoodDetailsPage = () => {
                       <input onChange={e => setExpire_date(e.target.value)} value={expire_date} type="date" placeholder="expire date" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control w-full ml-5">
+                    <div className="form-control w-full md:ml-5">
                       <label className="label">
                         <span className="label-text dark:text-black">Pickup Location</span>
                       </label>
@@ -121,14 +113,14 @@ const SingleFoodDetailsPage = () => {
                     </div>
 
                   </div>
-                  <div className=" flex justify-between dark:text-black">
+                  <div className=" flex flex-col md:flex-row justify-between dark:text-black">
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text dark:text-black">Food Donar Name</span>
                       </label>
                       <input onChange={e => setFood_name(e.target.value)} value={food_name} type="text" placeholder="food name" className="input input-bordered" required />
                     </div>
-                    <div className="form-control w-full ml-6">
+                    <div className="form-control w-full md:ml-6">
                       <label className="label">
                         <span className="label-text dark:text-black">Food Donar Email</span>
                       </label>
@@ -136,14 +128,14 @@ const SingleFoodDetailsPage = () => {
                     </div>
                   </div>
 
-                  <div className=" flex justify-between dark:text-black">
+                  <div className=" flex flex-col md:flex-row justify-between dark:text-black">
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text dark:text-black">My Email</span>
                       </label>
                       <input onChange={e => setFood_name(e.target.value)} value={food_name} type="text" placeholder="food name" className="input input-bordered" required />
                     </div>
-                    <div className="form-control w-full ml-5">
+                    <div className="form-control w-full md:ml-5">
                       <label className="label">
                         <span className="label-text dark:text-black">Req Date</span>
                       </label>

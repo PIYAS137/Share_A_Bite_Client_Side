@@ -8,9 +8,9 @@ const ManageSingleFoodPage = () => {
 
 
       <div className="overflow-x-scroll md:overflow-hidden">
-      <h1 className=" text-center text-3xl my-10 mb-10 font-bold dark:text-white">Manage Single Food Page</h1>
-      ekhane emage bosbe title hobe : requests for this food 
-      <table className="table w-full overflow-x-scroll">
+        <h1 className=" text-center text-3xl my-10 mb-10 font-bold dark:text-white">Manage Single Food Page</h1>
+        <p className=" text-center py-10 text-blue-300">Requests for this food | Food ID :123123123</p>
+        <table className="table w-full overflow-x-scroll">
           {/* head */}
           <thead>
             <tr>
@@ -20,6 +20,7 @@ const ManageSingleFoodPage = () => {
               <th className=" dark:text-white">Pickup Location</th>
               <th className=" dark:text-white">Request Date & Time</th>
               <th className=" dark:text-white">Status</th>
+              <th className=" dark:text-white">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -29,29 +30,31 @@ const ManageSingleFoodPage = () => {
                 return (
                   <tr key={one.id}>
                     <td>
-                    <img className="w-12 aspect-square object-cover rounded-xl" src={one.donator_image} alt="" />
+                      <img className="w-12 aspect-square object-cover rounded-xl" src={one.donator_image} alt="" />
                     </td>
                     <td>
                       {one.food_name}
                     </td>
                     <td>
-                    piyas@gmail.com
+                      piyas@gmail.com
                     </td>
                     <td>pickup Location</td>
-                    
+
                     <td>Req time + date</td>
                     <td>
-                      <span className=" text-green-700 font-bold">Available</span> :
-                      <button className="btn btn-error text-white btn-xs">Cancel</button>
-                      </td>
-                    
+                      <span className=" text-green-700 font-bold">Available</span> 
+                    </td>
+                    <td>
+                      <button className="btn btn-error text-white btn-xs">Cancel</button> : cancelled
+                    </td>
+
                   </tr>
                 )
               })
             }
           </tbody>
         </table>
-    </div>
+      </div>
     </div>
   )
 }

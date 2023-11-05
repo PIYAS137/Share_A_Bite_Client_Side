@@ -85,7 +85,7 @@ const ManageMyFoodsPage = () => {
   return (
     <div className="App overflow-x-scroll xl:overflow-hidden">
       <div className="container mx-auto flex flex-col justify-center">
-      <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">Manage My Foods</h1>
+      <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">Manage My Foods <sub className=" text-xs">[ React-Table ]</sub></h1>
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup,i) => (
