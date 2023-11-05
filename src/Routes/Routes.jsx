@@ -11,6 +11,7 @@ import MyFoodRequestPage from '../Pages/MyFoodRequestPage/MyFoodRequestPage'
 import ManageSingleFoodPage from '../Pages/ManageSingleFoodPage/ManageSingleFoodPage'
 import SingleFoodDetailsPage from '../Pages/SingleFoodDetailsPage/SingleFoodDetailsPage'
 import UpdateFoodPage from '../Pages/UpdateFoodPage/UpdateFoodPage'
+import PrivateRoute from '../Private/PrivateRoute'
 
 
 const routes = createBrowserRouter([
@@ -37,27 +38,27 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/singlefoodview',
-                element:<SingleFoodDetailsPage/>
+                element:<PrivateRoute><SingleFoodDetailsPage/></PrivateRoute>
             },
             {
                 path:'/addfood',
-                element:<AddFoodPage/>
+                element:<PrivateRoute><AddFoodPage/></PrivateRoute>
             },
             {
                 path:'/managefood',
-                element:<ManageMyFoodsPage/>
+                element:<PrivateRoute><ManageMyFoodsPage/></PrivateRoute>
             },
             {
                 path:'/managesinglefood',
-                element:<ManageSingleFoodPage/>
+                element:<PrivateRoute><ManageSingleFoodPage/></PrivateRoute>
             },
             {
                 path:'/foodreq',
-                element:<MyFoodRequestPage/>
+                element:<PrivateRoute><MyFoodRequestPage/></PrivateRoute>
             },
             {
                 path:'/updatefood',
-                element:<UpdateFoodPage/>
+                element:<PrivateRoute><UpdateFoodPage/></PrivateRoute>
             }
             
         ]

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
 import Swal from 'sweetalert2'
 
@@ -10,6 +10,7 @@ const LoginPage = () => {
   const [pass,setPass]=useState('')
   const [err,setErr]=useState('')
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleSubmit=(event)=>{
     event.preventDefault()
@@ -27,7 +28,7 @@ const LoginPage = () => {
                 })
                 setEmail('')
                 setPass('')
-                navigate('/')
+                navigate(location?.state ? location.state : '/')
             }).catch(error => {
               Swal.fire({
                 position: 'top-end',
@@ -70,7 +71,7 @@ const LoginPage = () => {
         </div>
         <div>
           {err && <p className=" text-red-500 font-semibold italic">{err}</p>}
-          <p className=" dark:text-gray-400">Dont have an account? Go To <Link to={'/register'} className=" font-semibold text-primary">Register Page</Link></p>
+          <p className=" dark:text-gray-400">Dont have an account? Go To <Link state={location.state} to={'/register'} className=" font-semibold text-primary">Register Page</Link></p>
         </div>
       </form>
     </div>

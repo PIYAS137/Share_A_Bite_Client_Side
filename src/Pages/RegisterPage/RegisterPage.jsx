@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/FirebaseAuthContext";
 import Swal from 'sweetalert2'
 
@@ -10,6 +10,7 @@ const capitalLetterRegex = /[A-Z]/;
 const RegisterPage = () => {
 
   const { updateUser, UserRegister } = useContext(AuthContext)
+  const location = useLocation()
 
 
   const [email, setEmail] = useState('')
@@ -54,7 +55,7 @@ const RegisterPage = () => {
             setEmail('')
             setPass('')
             setPhoto('')
-            navigate('/')
+            navigate(location?.state ? location.state : '/')
           }).catch(error => {
             Swal.fire({
               position: 'top-end',
