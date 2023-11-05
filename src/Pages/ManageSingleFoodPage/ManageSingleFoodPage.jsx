@@ -4,8 +4,12 @@ import { foodarr } from "../../Components/FeaturedFood/FeaturedFood"
 const ManageSingleFoodPage = () => {
   return (
     <div className=" h-screen">
+
+
+
       <div className="overflow-x-scroll md:overflow-hidden">
       <h1 className=" text-center text-3xl my-10 mb-10 font-bold dark:text-white">Manage Single Food Page</h1>
+      ekhane emage bosbe title hobe : requests for this food 
       <table className="table w-full overflow-x-scroll">
           {/* head */}
           <thead>

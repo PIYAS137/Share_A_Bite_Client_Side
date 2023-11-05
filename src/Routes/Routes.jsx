@@ -10,6 +10,7 @@ import ManageMyFoodsPage from '../Pages/ManageMyFoodsPage/ManageMyFoodsPage'
 import MyFoodRequestPage from '../Pages/MyFoodRequestPage/MyFoodRequestPage'
 import ManageSingleFoodPage from '../Pages/ManageSingleFoodPage/ManageSingleFoodPage'
 import SingleFoodDetailsPage from '../Pages/SingleFoodDetailsPage/SingleFoodDetailsPage'
+import UpdateFoodPage from '../Pages/UpdateFoodPage/UpdateFoodPage'
 
 
 const routes = createBrowserRouter([
@@ -55,7 +56,8 @@ const routes = createBrowserRouter([
                 element:<MyFoodRequestPage/>
             },
             {
-
+                path:'/updatefood',
+                element:<UpdateFoodPage/>
             }
             
         ]

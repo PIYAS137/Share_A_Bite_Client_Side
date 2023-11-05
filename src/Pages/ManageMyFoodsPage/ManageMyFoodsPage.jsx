@@ -67,7 +67,7 @@ const ManageMyFoodsPage = () => {
         accessor: "",
         Cell: ({ row }) => (
           <div className=" flex flex-col xl:flex-row">
-            <button className="btn btn-primary btn-sm" onClick={() => handleEdit(row)}>Edit</button>
+            <button className="btn btn-primary btn-sm" onClick={() => handleEdit(row)}><Link to={'/updatefood'}>Edit</Link></button>
             <button className="btn btn-error xl:ml-2 btn-sm" onClick={() => handleDelete(row)}>Delete</button>
             <button className="btn btn-info xl:ml-2 btn-sm" onClick={() => handleDelete(row)}><Link to='/managesinglefood'>Manage</Link></button>
           </div>
