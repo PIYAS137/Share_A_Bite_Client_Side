@@ -15,12 +15,36 @@ const AddFoodPage = () => {
   // const [donar_img,setDonar_img]=useState(user.photoURL)
   // const [donar_email,setDonar_email]=useState('')
   // const [food_status,setFood_Status]=useState('')
+  const currentDate = new Date()
 
-  const handleSubmitFood=(event)=>{
+  const handleSubmitFood = (event) => {
     event.preventDefault()
-    const newFood = {food_name,food_img,food_quantity,pickup_location,expire_date,additional_info}
+    const newFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info }
     console.log(newFood);
   }
+
+  // --------------------------------<<<<<<<<Expire date colculation start here-----------
+  const expireDateArray = expire_date.split('-');
+  const expireDate = new Date(
+    parseInt(expireDateArray[0]),  // Year
+    parseInt(expireDateArray[1]) - 1,  // Month (0-11)
+    parseInt(expireDateArray[2])  // Day
+  );
+
+  // Calculate the time difference
+  const timeDifference = expireDate - currentDate;
+
+  if (timeDifference > 0) {
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    console.log(`${days} days, ${hours} hours, ${minutes} minutes remaining.`);
+  } else {
+    console.log("Order has expired.");
+  }
+  // --------------------------------<<<<<<<<Expire date colculation start here-----------
+
 
 
 

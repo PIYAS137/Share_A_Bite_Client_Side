@@ -4,44 +4,66 @@ import { AuthContext } from "../../Context/FirebaseAuthContext"
 import Swal from 'sweetalert2'
 
 const LoginPage = () => {
-  const {UserLogin} = useContext(AuthContext)
+  const { UserLogin, LoginWithGoogle } = useContext(AuthContext)
 
-  const [email,setEmail]=useState('')
-  const [pass,setPass]=useState('')
-  const [err,setErr]=useState('')
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [err, setErr] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault()
     setErr('')
+    UserLogin(email, pass)
+      .then(res => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Successfully Login User',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setEmail('')
+        setPass('')
+        navigate(location?.state ? location.state : '/')
+      }).catch(error => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: "Login Faild",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setErr(error.message)
 
-
-        UserLogin(email, pass)
-            .then(res => {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Successfully Login User',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                setEmail('')
-                setPass('')
-                navigate(location?.state ? location.state : '/')
-            }).catch(error => {
-              Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: "Login Faild",
-                showConfirmButton: false,
-                timer: 1500
-              })
-                setErr(error.message)
-                
-            })
+      })
   }
-  
+  const handleGoogleLogin = () => {
+    LoginWithGoogle()
+      .then(res => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Successfully Login User',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setEmail('')
+        setPass('')
+        navigate(location?.state ? location.state : '/')
+      }).catch(err => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: "Login Faild",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setErr(error.message)
+      })
+  }
+
   return (
     <div className=" h-screen w-full justify-center flex items-center">
       <form onSubmit={handleSubmit} className="card-body max-w-xl text-black -mt-48">
@@ -61,13 +83,13 @@ const LoginPage = () => {
           <input onChange={e => setPass(e.target.value)} value={pass} type="password" placeholder="password" className="input input-bordered" required />
         </div>
 
-        
-        
+
+
 
 
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary mb-3">Log In User</button>
-          <button type="submit" className="btn btn-primary">Log In with Google</button>
+          <button onClick={handleGoogleLogin} type="submit" className="btn btn-primary">Log In with Google</button>
         </div>
         <div>
           {err && <p className=" text-red-500 font-semibold italic">{err}</p>}

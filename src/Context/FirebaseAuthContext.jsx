@@ -32,7 +32,7 @@ const FirebaseAuthContext = ({ children }) => {
             setUser(currentUser)
         })
         return ()=>{
-            return unSubscribe()
+             unSubscribe()
         }
     },[])
 
