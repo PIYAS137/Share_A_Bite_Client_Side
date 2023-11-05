@@ -1,15 +1,104 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../Context/FirebaseAuthContext";
+import Swal from 'sweetalert2'
+
+
+const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+const capitalLetterRegex = /[A-Z]/;
 
 const RegisterPage = () => {
+
+  const { updateUser, UserRegister } = useContext(AuthContext)
+
 
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [photo, setPhoto] = useState('')
   const [name, setName] = useState('')
+  const [err, setErr] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setErr(null)
+
+    if (pass.length <= 6) {
+      setErr("Your password length should be up to 6 character");
+      return
+    }
+    else if (!specialCharRegex.test(pass)) {
+      setErr("Your password have minimum one Special Character")
+      return
+    } else if (!capitalLetterRegex.test(pass)) {
+      setErr("Your password have minimum one Capital Character !")
+      return
+    }
+
+    // const newUser = { email, pass, name, profile }
+    // console.log(newUser);
+    UserRegister(email, pass)
+      .then(res => {
+
+
+        updateUser(res.user, name, photo)
+          .then(res => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Successfully Registered User',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setName('')
+            setEmail('')
+            setPass('')
+            setPhoto('')
+            navigate('/')
+          }).catch(error => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: "Login Faild",
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setErr(error.message)
+            console.log(error);
+          })
+
+        console.log(res);
+        // console.log(res);
+        // updateUser(res.user, name, photo)
+        //     .then(res => {
+        //         // implement backend code------------------<<<<<<
+        //         const SendUser = { name, email, profile }
+        //         axios.post('http://localhost:5020/users', SendUser)
+        //             .then(res => {
+        //                 if (res.data.insertedId) {
+        //                     Swal.fire({
+        //                         position: 'top-end',
+        //                         icon: 'success',
+        //                         title: 'Successfully Registered User',
+        //                         showConfirmButton: false,
+        //                         timer: 1500
+        //                     })
+        //                     setName('')
+        //                     setEmail('')
+        //                     setPass('')
+        //                     setProfile('')
+        //                     navigate('/')
+        //                 }
+        //             })
+        //         // implement backend code------------------<<<<<<
+        //     }).catch(error => {
+        //         setErr(error.message)
+        //         console.log(error);
+        //     })
+      }).catch(error => {
+        setErr(error.message)
+        console.log(error);
+      })
   }
 
 
@@ -27,25 +116,25 @@ const RegisterPage = () => {
           <label className="label">
             <span className="label-text dark:text-white">Name</span>
           </label>
-          <input onChange={e => setName(e.target.value)} value={name} type="text" placeholder="name" className="input input-bordered" required />
+          <input name="name" onChange={e => setName(e.target.value)} value={name} type="text" placeholder="name" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text dark:text-white">Email</span>
           </label>
-          <input onChange={e => setEmail(e.target.value)} value={email} type="text" placeholder="email" className="input input-bordered" required />
+          <input name="email" onChange={e => setEmail(e.target.value)} value={email} type="text" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text dark:text-white">Password</span>
           </label>
-          <input onChange={e => setPass(e.target.value)} value={pass} type="text" placeholder="password" className="input input-bordered" required />
+          <input onChange={e => setPass(e.target.value)} value={pass} type="password" placeholder="password" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text dark:text-white">Photo URL</span>
           </label>
-          <input onChange={e => setPhoto(e.target.value)} value={photo} type="text" placeholder="photo url" className="input input-bordered" required />
+          <input name="photo" onChange={e => setPhoto(e.target.value)} value={photo} type="text" placeholder="photo url" className="input input-bordered" required />
         </div>
 
 
@@ -56,6 +145,7 @@ const RegisterPage = () => {
           <button type="submit" className="btn btn-primary mb-3">Register In User</button>
         </div>
         <div>
+          {err && <p className=" text-red-500 font-semibold italic">{err}</p>}
           <p className=" dark:text-gray-400">Already have an account? Go To <Link to={'/login'} className=" font-semibold text-primary">Login Page</Link></p>
         </div>
       </form>

@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../Context/FirebaseAuthContext"
 
 const AddFoodPage = () => {
+
+  // const {user} = useContext(AuthContext)
 
   const [food_name, setFood_name] = useState('')
   const [food_img, setFood_img] = useState('')
@@ -8,8 +11,8 @@ const AddFoodPage = () => {
   const [pickup_location, setPickup_location] = useState('')
   const [expire_date, setExpire_date] = useState('')
   const [additional_info, setAdditional_info] = useState('')
-  // const [donar_name,setDonar_name]=useState('')
-  // const [donar_img,setDonar_img]=useState('')
+  // const [donar_name,setDonar_name]=useState(user.dispalyName)
+  // const [donar_img,setDonar_img]=useState(user.photoURL)
   // const [donar_email,setDonar_email]=useState('')
   // const [food_status,setFood_Status]=useState('')
 

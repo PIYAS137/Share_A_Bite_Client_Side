@@ -1,11 +1,14 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Logo from '../Assets/Logo.png'
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../Context/FirebaseAuthContext';
 
 
 
 const AppNavbar = () => {
+
+  const {user,UserLogOut}=useContext(AuthContext)
 
 
 
@@ -35,6 +38,12 @@ const AppNavbar = () => {
   // ------------------------dark mode---------------------------
 
 
+
+  const handleClickSignOut=()=>{{
+    UserLogOut()
+    .then()
+    .catch()
+  }}
 
 
 
@@ -72,7 +81,10 @@ const AppNavbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-      <Link to={'/login'}><button className="btn">LogIn</button></Link>
+      
+      {user?.photoURL && <img className=' w-12 mr-2 aspect-square object-cover rounded-full' src={user.photoURL}/>}
+        {!user?.email ? <Link to={'/login'}><button className="btn">LogIn</button></Link> : <button onClick={handleClickSignOut} className="btn btn-error text-white">Sign Out</button>}
+      
       </div>
       <div className='ml-4 mr-2'>
         <label className="swap swap-rotate">
