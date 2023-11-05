@@ -1,9 +1,11 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
+import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
+import Swal from 'sweetalert2'
 
 const AddFoodPage = () => {
-
-  // const {user} = useContext(AuthContext)
+  const secureAxios = useAxiosSecure()
+  const {user} = useContext(AuthContext)
 
   const [food_name, setFood_name] = useState('')
   const [food_img, setFood_img] = useState('')
@@ -11,39 +13,84 @@ const AddFoodPage = () => {
   const [pickup_location, setPickup_location] = useState('')
   const [expire_date, setExpire_date] = useState('')
   const [additional_info, setAdditional_info] = useState('')
-  // const [donar_name,setDonar_name]=useState(user.dispalyName)
-  // const [donar_img,setDonar_img]=useState(user.photoURL)
-  // const [donar_email,setDonar_email]=useState('')
-  // const [food_status,setFood_Status]=useState('')
-  const currentDate = new Date()
+  const [donar_name,setDonar_name]=useState(user.displayName)
+  const [donar_img,setDonar_img]=useState(user.photoURL)
+  const [donar_email,setDonar_email]=useState(user.email)
+  const [food_status,setFood_Status]=useState('available')
+
+  const urlForAddFood = '/addFood';
+
 
   const handleSubmitFood = (event) => {
     event.preventDefault()
-    const newFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info }
-    console.log(newFood);
+    const newFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info,donar_name,donar_img,donar_email,food_status }
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Added it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        secureAxios.post(urlForAddFood,newFood)
+        .then(res=>{
+          if(res.data.insertedId){
+            Swal.fire(
+              'Successfully Added!',
+              'Your food has been added.',
+              'success'
+            )
+            setFood_name('')
+            setFood_img('')
+            setFood_quantity('')
+            setPickup_location('')
+            setExpire_date('')
+            setAdditional_info('')
+          }
+        }).catch(err=>{
+          console.log(err);
+        })
+      }
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   }
 
-  // --------------------------------<<<<<<<<Expire date colculation start here-----------
-  const expireDateArray = expire_date.split('-');
-  const expireDate = new Date(
-    parseInt(expireDateArray[0]),  // Year
-    parseInt(expireDateArray[1]) - 1,  // Month (0-11)
-    parseInt(expireDateArray[2])  // Day
-  );
+  // // --------------------------------<<<<<<<<Expire date colculation start here-----------
+  // const currentDate = new Date()
 
-  // Calculate the time difference
-  const timeDifference = expireDate - currentDate;
 
-  if (timeDifference > 0) {
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  // const expireDateArray = expire_date.split('-');
+  // const expireDate = new Date(
+  //   parseInt(expireDateArray[0]),  // Year
+  //   parseInt(expireDateArray[1]) - 1,  // Month (0-11)
+  //   parseInt(expireDateArray[2])  // Day
+  // );
 
-    console.log(`${days} days, ${hours} hours, ${minutes} minutes remaining.`);
-  } else {
-    console.log("Order has expired.");
-  }
-  // --------------------------------<<<<<<<<Expire date colculation start here-----------
+  // // Calculate the time difference
+  // const timeDifference = expireDate - currentDate;
+
+  // if (timeDifference > 0) {
+  //   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  //   const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  //   const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+  //   console.log(`${days} days, ${hours} hours, ${minutes} minutes remaining.`);
+  // } else {
+  //   console.log("Order has expired.");
+  // }
+  // // --------------------------------<<<<<<<<Expire date colculation start here-----------
 
 
 
