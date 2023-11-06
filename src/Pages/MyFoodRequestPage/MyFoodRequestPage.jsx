@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
+import Swal from 'sweetalert2'
+
+
 
 
 // const newFood = {
@@ -39,6 +42,37 @@ const MyFoodRequestPage = () => {
   }, [])
 
 
+  const handleClickDeleteReq = (sid) => {
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        const url = `/reqDelete/${sid}`
+        secureAxios.delete(url)
+          .then(res => {
+            if (res.data.deletedCount > 0) {
+              const temp = datas.filter(one => one._id !== sid)
+              setDatas(temp)
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          })
+      }
+    });
+  }
+
+
 
 
 
@@ -72,7 +106,6 @@ const MyFoodRequestPage = () => {
             {/* row 1 */}
             {
               datas.map(one => {
-                console.log(one);
                 return (
                   <tr key={one._id}>
                     <td>
@@ -99,7 +132,7 @@ const MyFoodRequestPage = () => {
                     <th>
                       {
                         one.food_status ?
-                          <button className="btn btn-error text-white btn-xs">Cancel</button>
+                          <button onClick={() => handleClickDeleteReq(one._id)} className="btn btn-error text-white btn-xs">Cancel</button>
                           :
                           <button disabled className=" uppercase rounded-lg bg-red-400 opacity-30 text-white btn-xs">Cancel</button>
 
