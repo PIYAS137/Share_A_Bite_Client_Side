@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export const foodarr=[
     {
       "id": 1,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
@@ -16,7 +16,7 @@ export const foodarr=[
     },
     {
       "id": 2,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
@@ -27,7 +27,7 @@ export const foodarr=[
     },
     {
       "id": 3,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
@@ -38,7 +38,7 @@ export const foodarr=[
     },
     {
       "id": 4,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
@@ -49,7 +49,7 @@ export const foodarr=[
     },
     {
       "id": 5,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
@@ -60,7 +60,7 @@ export const foodarr=[
     },
     {
       "id": 6,
-      "food_name": "Fuck Him",
+      "food_name": "Love Him",
       "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
       "donator_name": "Piyas Mahamude Alif",
       "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",

@@ -31,7 +31,7 @@ const SingleCardFeaturedFood = ({data}) => {
                 
                 <p className=" text-sm italic">{data.additional_info}</p>
                 <div className="card-actions justify-center">
-                    <Link to={'/singlefoodview'}><button className=" btn btn-primary btn-outline">View Details</button></Link>
+                    <Link to={`/singlefoodview/${data._id}`}><button className=" btn btn-primary btn-outline">View Details</button></Link>
                 </div>
             </div>
         </div>
