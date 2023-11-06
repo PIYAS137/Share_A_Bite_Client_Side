@@ -97,15 +97,6 @@ const ManageMyFoodsPage = () => {
         accessor: "slNo",
       },
       {
-        Header: "Status",
-        accessor: "food_status",
-        Cell: ({ row }) => (
-          <span className="status-span text-green-500 px-2 font-bold text-sm">
-            available{row.original.status}
-          </span>
-        ),
-      },
-      {
         Header: "Food Name",
         accessor: "food_name",
         sortType: "basic",
@@ -134,7 +125,7 @@ const ManageMyFoodsPage = () => {
       },
       {
         Header: "Expire Date",
-        accessor: "expired_date",
+        accessor: "expire_date",
         sortType: "basic",
       },
       {
@@ -144,9 +135,8 @@ const ManageMyFoodsPage = () => {
           <div className="flex flex-col xl:flex-row">
             <button
               className="btn btn-primary btn-sm"
-              // onClick={() => handleEdit(row)}
             >
-              <Link to={"/updatefood"}>Edit</Link>
+              <Link to={`/updatefood/${row.original._id}`}>Edit</Link>
             </button>
             <button
               className="btn btn-error xl:ml-2 btn-sm"
@@ -156,7 +146,6 @@ const ManageMyFoodsPage = () => {
             </button>
             <button
               className="btn btn-info xl:ml-2 btn-sm"
-              // onClick={() => handleManage(row)}
             >
               <Link to="/managesinglefood">Manage</Link>
             </button>
@@ -179,47 +168,46 @@ const ManageMyFoodsPage = () => {
     <div className="App overflow-x-scroll xl:overflow-hidden">
       <div className="container mx-auto flex flex-col justify-center">
         <h1 className="text-center text-3xl my-16 mb-10 font-bold dark:text-white">
-          Manage My Foods <sub className="text-xs">[ React-Table ]</sub>
+          Manage My Foods <br /><sub className="text-xs">[ React-Table , I try my best ]</sub>
         </h1>
-        {/* {datas.length > 0 ? ( */}
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup, i) => (
-                <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column, i) => (
-                    <th
-                      className="px-10 border"
-                      key={i}
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                    >
-                      {column.render("Header")}
-                      <span>
-                        {column.isSorted
-                          ? column.isSortedDesc
-                            ? " 🔽"
-                            : " 🔼"
-                          : ""}
-                      </span>
-                    </th>
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup, i) => (
+              <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column, i) => (
+                  <th
+                    className="px-10 border"
+                    key={i}
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                  >
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr className=" border" key={i} {...row.getRowProps()}>
+                  {row.cells.map((cell, i) => (
+                    <td className="text-center" key={i} {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </td>
                   ))}
                 </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row, i) => {
-                prepareRow(row);
-                return (
-                  <tr className=" border" key={i} {...row.getRowProps()}>
-                    {row.cells.map((cell, i) => (
-                      <td className="text-center" key={i} {...cell.getCellProps()}>
-                        {cell.render("Cell")}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+              );
+            })}
+          </tbody>
+        </table>
         {/* ) : (
           <div className=" text-center text-red-500 font-bold italic">You Added Nothing !</div>
         )} */}

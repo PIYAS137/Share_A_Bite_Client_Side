@@ -1,31 +1,63 @@
 import { useState } from "react"
+import { useLoaderData, useNavigate } from "react-router-dom"
+import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
+import Swal from 'sweetalert2'
 
 const UpdateFoodPage = () => {
 
+    const loadedData = useLoaderData()
+    const secureAxios = useAxiosSecure()
+    const navigate = useNavigate()
 
-    const [food_name, setFood_name] = useState('')
-    const [food_img, setFood_img] = useState('')
-    const [food_quantity, setFood_quantity] = useState('')
-    const [pickup_location, setPickup_location] = useState('')
-    const [expire_date, setExpire_date] = useState('')
-    const [additional_info, setAdditional_info] = useState('')
+
+    const [food_name, setFood_name] = useState(loadedData.food_name)
+    const [food_img, setFood_img] = useState(loadedData.food_img)
+    const [food_quantity, setFood_quantity] = useState(loadedData.food_quantity)
+    const [pickup_location, setPickup_location] = useState(loadedData.pickup_location)
+    const [expire_date, setExpire_date] = useState(loadedData.expire_date)
+    const [additional_info, setAdditional_info] = useState(loadedData.additional_info)
     // const [donar_name,setDonar_name]=useState('')
     // const [donar_img,setDonar_img]=useState('')
     // const [donar_email,setDonar_email]=useState('')
-    // const [food_status,setFood_Status]=useState('')
+    const [updateFood_status, setUpdateFood_Status] = useState(loadedData.food_status)
 
 
 
-    const handleClickToggle=(e)=>{
-        console.log(e.target.checked);
-    }
 
 
 
     const handleSubmitFood = (event) => {
         event.preventDefault()
-        const newFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info }
-        console.log(newFood);
+        const updatedFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info, updateFood_status }
+        const url = `/updateFood/${loadedData._id}`
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You really want to update this?!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, upadate it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                secureAxios.patch(url, updatedFood)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            navigate('/managefood')
+                            Swal.fire({
+                                title: "Updated!",
+                                text: "Your file has been updated.",
+                                icon: "success"
+                            });
+                        }
+                    }).catch(err => {
+                        console.log(err);
+                    })
+            }
+        })
     }
 
 
@@ -51,30 +83,12 @@ const UpdateFoodPage = () => {
                     <input onChange={e => setFood_img(e.target.value)} value={food_img} type="text" placeholder="food image" className="input input-bordered" required />
                 </div>
 
-
-
-
-
-
-
-
-
-
-                <div className="flex justify-between">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text dark:text-white">Food Quantity</span>
-                        </label>
-                        <input onChange={e => setFood_quantity(e.target.value)} value={food_quantity} min={1} type="number" placeholder="food quantity" className="input input-bordered" required />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text dark:text-white">Make this food Unavailable</span>
-                        </label>
-                        <input onClick={(e)=>handleClickToggle(e)} type="checkbox" className="toggle toggle-lg" />
-                    </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text dark:text-white">Food Quantity</span>
+                    </label>
+                    <input onChange={e => setFood_quantity(e.target.value)} value={food_quantity} min={1} type="number" placeholder="food quantity" className="input input-bordered" required />
                 </div>
-
 
 
 

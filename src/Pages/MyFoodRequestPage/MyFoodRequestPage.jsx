@@ -124,17 +124,17 @@ const MyFoodRequestPage = () => {
                     <td>{one.request_date}</td>
                     <td>${one.donate_money ? one.donate_money : "00.00"}</td>
                     <td>
-                      {one.food_status ?
+                      {!one.isDelevered ?
                         <span className=" text-green-700 font-bold">Available</span>
                         :
-                        <span className=" text-red-700 font-bold">Unavailable</span>}
+                        <span className=" text-red-700 font-bold">Delevered</span>}
                     </td>
                     <th>
                       {
-                        one.food_status ?
-                          <button onClick={() => handleClickDeleteReq(one._id)} className="btn btn-error text-white btn-xs">Cancel</button>
-                          :
+                        one.isDelevered ?
                           <button disabled className=" uppercase rounded-lg bg-red-400 opacity-30 text-white btn-xs">Cancel</button>
+                          :
+                          <button onClick={() => handleClickDeleteReq(one._id)} className="btn btn-error text-white btn-xs">Cancel</button>
 
                       }
                     </th>
