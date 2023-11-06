@@ -1,18 +1,53 @@
-import { foodarr } from "../../Components/FeaturedFood/FeaturedFood"
-// {
-//   "id": 1,
-//   "food_name": "Love Him",
-//   "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
-//   "donator_name": "Piyas Mahamude Alif",
-//   "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
-//   "food_quantity": 10,
-//   "pickup_location": "Dhaka",
-//   "expired_date": "12/11/12",
-//   "additional_node": "The quick brown fox jumps over the lazy dog."
-// },
+import { useContext, useEffect, useState } from "react"
+import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
+import { AuthContext } from "../../Context/FirebaseAuthContext"
+
+
+// const newFood = {
+//   food_name,
+//   food_img,
+//   requester_email: user.email,
+//   requester_name: user.displayName,
+//   requester_img: user.photoURL,
+//   request_date,
+//   requestNote,
+//   donate_money,
+//   requset_food_id: loadedData._id,
+//   isDelevered: false,
+//   food_status: true,
+//   donar_name: loadedData.donar_name,
+//   donar_img: loadedData.donar_img,
+//   pickup_location:loadedData.pickup_location,
+//   food_expire_date:loadedData.expireDate
+// }
+
 
 
 const MyFoodRequestPage = () => {
+  const { user } = useContext(AuthContext)
+  const secureAxios = useAxiosSecure()
+  const url = `/getUserReqFood?email=${user.email}`
+
+  const [datas, setDatas] = useState([])
+
+
+  useEffect(() => {
+    secureAxios.get(url)
+      .then(res => {
+        setDatas(res.data)
+      })
+  }, [])
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className=" h-screen">
       <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">My Food Request</h1>
@@ -28,6 +63,7 @@ const MyFoodRequestPage = () => {
               <th className=" dark:text-white">Pickup Location</th>
               <th className=" dark:text-white">Expire Date</th>
               <th className=" dark:text-white">Request Date</th>
+              <th className=" dark:text-white">Donate Money</th>
               <th className=" dark:text-white">Status</th>
               <th className=" dark:text-white">Actions</th>
             </tr>
@@ -35,9 +71,10 @@ const MyFoodRequestPage = () => {
           <tbody>
             {/* row 1 */}
             {
-              foodarr.map(one => {
+              datas.map(one => {
+                console.log(one);
                 return (
-                  <tr key={one.id}>
+                  <tr key={one._id}>
                     <td>
                       <img className="w-12 aspect-square object-cover rounded-xl" src={one.food_img} alt="" />
                     </td>
@@ -45,16 +82,28 @@ const MyFoodRequestPage = () => {
                       {one.food_name}
                     </td>
                     <td>
-                    <img className="w-12 aspect-square object-cover rounded-xl" src={one.donator_image} alt="" />
+                      <img className="w-12 aspect-square object-cover rounded-xl" src={one.donar_img} alt="" />
                     </td>
-                    <td>{one.donator_name}</td>
-                    
+                    <td>{one.donar_name}</td>
+
                     <td>{one.pickup_location}</td>
-                    <td>{one.expired_date}</td>
-                    <td>{one.expired_date}</td>
-                    <td><span className=" text-green-700 font-bold">Available</span></td>
+                    <td>{one.food_expire_date}</td>
+                    <td>{one.request_date}</td>
+                    <td>${one.donate_money ? one.donate_money : "00.00"}</td>
+                    <td>
+                      {one.food_status ?
+                        <span className=" text-green-700 font-bold">Available</span>
+                        :
+                        <span className=" text-red-700 font-bold">Unavailable</span>}
+                    </td>
                     <th>
-                      <button className="btn btn-error text-white btn-xs">Cancel</button>
+                      {
+                        one.food_status ?
+                          <button className="btn btn-error text-white btn-xs">Cancel</button>
+                          :
+                          <button disabled className=" uppercase rounded-lg bg-red-400 opacity-30 text-white btn-xs">Cancel</button>
+
+                      }
                     </th>
                   </tr>
                 )

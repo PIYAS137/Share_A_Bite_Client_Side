@@ -60,7 +60,23 @@ const SingleFoodDetailsPage = () => {
 
   const handleSubmitFood = (event) => {
     event.preventDefault()
-    const newFood = { food_name, food_img, requester_email: user.email, requester_name: user.displayName, requester_img: user.photoURL, request_date, requestNote, donate_money, requset_food_id: loadedData._id, isDelevered: false }
+    const newFood = {
+      food_name,
+      food_img,
+      requester_email: user.email,
+      requester_name: user.displayName,
+      requester_img: user.photoURL,
+      request_date,
+      requestNote,
+      donate_money,
+      requset_food_id: loadedData._id,
+      isDelevered: false,
+      food_status: true,
+      donar_name: loadedData.donar_name,
+      donar_img: loadedData.donar_img,
+      pickup_location:loadedData.pickup_location,
+      food_expire_date:loadedData.expire_date
+    }
 
 
 
@@ -86,12 +102,12 @@ const SingleFoodDetailsPage = () => {
               });
               navigate('/foodreq')
             }
-            if(res.data == "Already Added"){
+            if (res.data == "Already Added") {
               Swal.fire({
                 title: "Already Added!",
                 text: "Your request is already done !",
                 icon: "info"
-              }); 
+              });
             }
           })
 

@@ -16,7 +16,7 @@ const AddFoodPage = () => {
   const [donar_name,setDonar_name]=useState(user.displayName)
   const [donar_img,setDonar_img]=useState(user.photoURL)
   const [donar_email,setDonar_email]=useState(user.email)
-  const [food_status,setFood_Status]=useState('available')
+  const [food_status,setFood_Status]=useState(true)
 
   const urlForAddFood = '/addFood';
 
