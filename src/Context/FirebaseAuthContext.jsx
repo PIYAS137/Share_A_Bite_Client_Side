@@ -27,14 +27,14 @@ const FirebaseAuthContext = ({ children }) => {
         return signOut(FirebaseAuth)
     }
     useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(FirebaseAuth,currentUser=>{
+        const unSubscribe = onAuthStateChanged(FirebaseAuth,(currentUser)=>{
             setLoader(false)
             setUser(currentUser)
         })
         return ()=>{
-             unSubscribe()
+            return unSubscribe()
         }
-    },[])
+    },[user])
 
     const updateUser=(val,name,photo)=>{
         setLoader(true)

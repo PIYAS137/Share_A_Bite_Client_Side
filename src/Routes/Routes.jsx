@@ -14,6 +14,8 @@ import UpdateFoodPage from '../Pages/UpdateFoodPage/UpdateFoodPage'
 import PrivateRoute from '../Private/PrivateRoute'
 
 
+
+
 const routes = createBrowserRouter([
     {
         path:'/',

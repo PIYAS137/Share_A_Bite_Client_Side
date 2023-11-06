@@ -41,6 +41,7 @@ const RegisterPage = () => {
     UserRegister(email, pass)
       .then(res => {
 
+        console.log(res);
 
         updateUser(res.user, name, photo)
           .then(res => {
@@ -55,6 +56,7 @@ const RegisterPage = () => {
             setEmail('')
             setPass('')
             setPhoto('')
+            console.log(res);
             navigate(location?.state ? location.state : '/')
           }).catch(error => {
             Swal.fire({

@@ -1,42 +1,114 @@
-import { foodarr as fakeData } from "../../Components/FeaturedFood/FeaturedFood";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
+import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure";
+import { AuthContext } from "../../Context/FirebaseAuthContext";
+import Swal from 'sweetalert2'
 
-// {
-//   "id": 1,
-//   "food_name": "Love Him",
-//   "food_img": "https://i.ibb.co/D542mtT/Rectangle-9.png",
-//   "donator_name": "Piyas Mahamude Alif",
-//   "donator_image": "https://i.ibb.co/0txbDWL/IMG-20210918-234954.jpg",
-//   "food_quantity": 10,
-//   "pickup_location": "Dhaka",
-//   "expired_date": "12/11/12",
-//   "additional_node": "The quick brown fox jumps over the lazy dog."
-// },
 
 
 
 const ManageMyFoodsPage = () => {
 
 
-  const data = React.useMemo(() => fakeData, []);
+  const { user } = React.useContext(AuthContext)
+  const [datas, setDatas] = React.useState([])
+  const secureAxios = useAxiosSecure()
+  const url = `/myaddedFoods?email=${user.email}`
+
+  React.useEffect(() => {
+    secureAxios.get(url)
+      .then(res => {
+        setDatas(res.data)
+      })
+  }, [datas])
+
+
+
+
+
+  const handleDelete = (val) => {
+
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        const foodId = val.original._id
+        const url = `/manageDelete/${foodId}`
+        secureAxios.delete(url)
+          .then(res => {
+            console.log(res);
+            if (res.data.deletedCount > 0) {
+              console.log(datas);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          })
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+  const data = React.useMemo(() => {
+    return datas?.map((item, index) => ({
+      ...item,
+      slNo: index + 1,
+    }));
+  }, [datas]);
+
   const columns = React.useMemo(
     () => [
       {
-        Header: "ID",
-        accessor: "id",
+        Header: "SL No",
+        accessor: "slNo",
       },
       {
         Header: "Status",
-        accessor: "status",
+        accessor: "food_status",
         Cell: ({ row }) => (
-          <span className="status-span text-green-500 px-2 font-bold text-sm">available{row.original.status}</span>
+          <span className="status-span text-green-500 px-2 font-bold text-sm">
+            available{row.original.status}
+          </span>
         ),
       },
       {
         Header: "Food Name",
         accessor: "food_name",
+        sortType: "basic",
       },
       {
         Header: "Food Image",
@@ -53,69 +125,107 @@ const ManageMyFoodsPage = () => {
       {
         Header: "Food Quantity",
         accessor: "food_quantity",
+        sortType: "basic",
       },
       {
         Header: "Pickup Location",
         accessor: "pickup_location",
+        sortType: "basic",
       },
       {
         Header: "Expire Date",
         accessor: "expired_date",
+        sortType: "basic",
       },
       {
         Header: "Actions",
         accessor: "",
         Cell: ({ row }) => (
-          <div className=" flex flex-col xl:flex-row">
-            <button className="btn btn-primary btn-sm" onClick={() => handleEdit(row)}><Link to={'/updatefood'}>Edit</Link></button>
-            <button className="btn btn-error xl:ml-2 btn-sm" onClick={() => handleDelete(row)}>Delete</button>
-            <button className="btn btn-info xl:ml-2 btn-sm" onClick={() => handleDelete(row)}><Link to='/managesinglefood'>Manage</Link></button>
+          <div className="flex flex-col xl:flex-row">
+            <button
+              className="btn btn-primary btn-sm"
+              // onClick={() => handleEdit(row)}
+            >
+              <Link to={"/updatefood"}>Edit</Link>
+            </button>
+            <button
+              className="btn btn-error xl:ml-2 btn-sm"
+              onClick={() => handleDelete(row)}
+            >
+              Delete
+            </button>
+            <button
+              className="btn btn-info xl:ml-2 btn-sm"
+              // onClick={() => handleManage(row)}
+            >
+              <Link to="/managesinglefood">Manage</Link>
+            </button>
           </div>
-  )},
-      
+        ),
+      },
     ],
     []
   );
-  
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
-
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data }, useSortBy);
 
   return (
     <div className="App overflow-x-scroll xl:overflow-hidden">
       <div className="container mx-auto flex flex-col justify-center">
-      <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">Manage My Foods <sub className=" text-xs">[ React-Table ]</sub></h1>
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup,i) => (
-              <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column,i) => (
-                  <th className="px-10 border" key={i} {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-      
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row,i) => {
-              prepareRow(row);
-              return (
-                <tr className=" border" key={i} {...row.getRowProps()}>
-                  {row.cells.map((cell,i) => (
-                    <td className=" text-center" key={i} {...cell.getCellProps()}> {cell.render("Cell")} </td>
+        <h1 className="text-center text-3xl my-16 mb-10 font-bold dark:text-white">
+          Manage My Foods <sub className="text-xs">[ React-Table ]</sub>
+        </h1>
+        {/* {datas.length > 0 ? ( */}
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup, i) => (
+                <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column, i) => (
+                    <th
+                      className="px-10 border"
+                      key={i}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      {column.render("Header")}
+                      <span>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " 🔽"
+                            : " 🔼"
+                          : ""}
+                      </span>
+                    </th>
                   ))}
                 </tr>
-              );
-            })}
-            
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <tr className=" border" key={i} {...row.getRowProps()}>
+                    {row.cells.map((cell, i) => (
+                      <td className="text-center" key={i} {...cell.getCellProps()}>
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        {/* ) : (
+          <div className=" text-center text-red-500 font-bold italic">You Added Nothing !</div>
+        )} */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ManageMyFoodsPage
+export default ManageMyFoodsPage;

@@ -14,15 +14,19 @@ const UpdateFoodPage = () => {
     // const [donar_email,setDonar_email]=useState('')
     // const [food_status,setFood_Status]=useState('')
 
+
+
+    const handleClickToggle=(e)=>{
+        console.log(e.target.checked);
+    }
+
+
+
     const handleSubmitFood = (event) => {
         event.preventDefault()
         const newFood = { food_name, food_img, food_quantity, pickup_location, expire_date, additional_info }
         console.log(newFood);
     }
-
-
-
-
 
 
 
@@ -47,12 +51,40 @@ const UpdateFoodPage = () => {
                     <input onChange={e => setFood_img(e.target.value)} value={food_img} type="text" placeholder="food image" className="input input-bordered" required />
                 </div>
 
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text dark:text-white">Food Quantity</span>
-                    </label>
-                    <input onChange={e => setFood_quantity(e.target.value)} value={food_quantity} min={1} type="number" placeholder="food quantity" className="input input-bordered" required />
+
+
+
+
+
+
+
+
+
+                <div className="flex justify-between">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text dark:text-white">Food Quantity</span>
+                        </label>
+                        <input onChange={e => setFood_quantity(e.target.value)} value={food_quantity} min={1} type="number" placeholder="food quantity" className="input input-bordered" required />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text dark:text-white">Make this food Unavailable</span>
+                        </label>
+                        <input onClick={(e)=>handleClickToggle(e)} type="checkbox" className="toggle toggle-lg" />
+                    </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
 
                 <div className="form-control">
                     <label className="label">
