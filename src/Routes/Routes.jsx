@@ -52,7 +52,8 @@ const routes = createBrowserRouter([
                 element:<PrivateRoute><ManageMyFoodsPage/></PrivateRoute>
             },
             {
-                path:'/managesinglefood',
+                path:`/managesinglefood/:sid`,
+                loader:({params})=>fetch(`http://localhost:5020/manageSingle/${params.sid}`),
                 element:<PrivateRoute><ManageSingleFoodPage/></PrivateRoute>
             },
             {

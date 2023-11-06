@@ -147,7 +147,7 @@ const ManageMyFoodsPage = () => {
             <button
               className="btn btn-info xl:ml-2 btn-sm"
             >
-              <Link to="/managesinglefood">Manage</Link>
+              <Link to={`/managesinglefood/${row.original._id}`}>Manage</Link>
             </button>
           </div>
         ),
