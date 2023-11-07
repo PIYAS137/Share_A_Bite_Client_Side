@@ -40,7 +40,7 @@ const AvailableFoodsPage = () => {
   return (
 
     <div >
-      <h1 className="text-5xl font-bold text-center mt-10">Available Food </h1>
+      <h1 className="text-3xl md:text-5xl font-bold text-center mt-10">Available Food </h1>
       <p className=" text-center pt-2 mb-3">Share your extra bites to everyone !</p>
       <p className=" text-center mb-2 clear-left text-blue-400">{datas.length} food found </p>
       <motion.div style={{ scaleX }}>

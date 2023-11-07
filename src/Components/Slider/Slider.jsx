@@ -1,16 +1,20 @@
+import { Link } from 'react-router-dom'
+
 
 const Slider = () => {
     return (
-        <div className="carousel w-full my-5 rounded-xl">
+        <div className="carousel w-full rounded-xl">
             <div id="slide1" className="carousel-item relative w-full max-h-[700px] bg-red-500 rounded-xl overflow-hidden">
                 <img src='https://c0.wallpaperflare.com/path/785/119/722/blur-bowl-child-date-fruits-00629ad0502ff75118cd6a0903d7ea87.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover Food</button>
-                            <button className=' btn btn-outline border-white text-white'>Donate Food</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>
@@ -21,13 +25,13 @@ const Slider = () => {
             </div>
             <div id="slide2" className="carousel-item relative w-full max-h-[700px] rounded-xl overflow-hidden">
                 <img src='https://i.ibb.co/VS8sv7H/sandwich-5549852-1280.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover More</button>
-                            <button className=' btn btn-outline border-white text-white'>Latest Project</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>
@@ -38,13 +42,13 @@ const Slider = () => {
             </div>
             <div id="slide3" className="carousel-item relative w-full max-h-[700px] rounded-xl overflow-hidden">
                 <img src='https://i.ibb.co/FnMtmrD/pizza-8295757-1280.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover More</button>
-                            <button className=' btn btn-outline border-white text-white'>Latest Project</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>
@@ -55,13 +59,13 @@ const Slider = () => {
             </div>
             <div id="slide4" className="carousel-item relative w-full max-h-[700px] rounded-xl overflow-hidden">
                 <img src='https://i.ibb.co/ggGf0Wq/close-up-people-collecting-food.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover More</button>
-                            <button className=' btn btn-outline border-white text-white'>Latest Project</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>
@@ -72,13 +76,13 @@ const Slider = () => {
             </div>
             <div id="slide5" className="carousel-item relative w-full max-h-[700px] rounded-xl overflow-hidden">
                 <img src='https://i.ibb.co/pLxM8tF/volunteer-handing-donation-box.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover More</button>
-                            <button className=' btn btn-outline border-white text-white'>Latest Project</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>
@@ -89,13 +93,13 @@ const Slider = () => {
             </div>
             <div id="slide6" className="carousel-item relative w-full max-h-[700px] rounded-xl overflow-hidden">
                 <img src='https://i.ibb.co/9gzh5c6/close-up-volunteers-working-together.jpg' className="w-full object-cover" />
-                <div className="p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
+                <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
                     <div className=' text-white'>
-                        <h1 className='mb-4 text-6xl font-extrabold max-w-[35%]'>Share A Bite With Loving People</h1>
-                        <p className='font-semibold text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
+                        <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
+                        <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
                         <div className=''>
-                            <button className=' bg-red-500 hover:bg-red-600 btn text-white border-none mr-3'>Discover More</button>
-                            <button className=' btn btn-outline border-white text-white'>Latest Project</button>
+                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
+                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
                         </div>
                     </div>
                 </div>

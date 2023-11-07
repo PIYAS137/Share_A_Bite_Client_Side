@@ -24,7 +24,7 @@ const SingleCardFeaturedFood = ({ data }) => {
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         setRemainingTime(`${days}d : ${hours}h : ${minutes}m`)
       } else {
-        setRemainingTime("Order has expired.")
+        setRemainingTime("Food has expired")
       }
     }, [])
 
