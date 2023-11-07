@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom"
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
 import Swal from 'sweetalert2'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
@@ -11,6 +11,10 @@ const ManageSingleFoodPage = () => {
   const loadedData = useLoaderData()
   const [datas, setDatas] = useState(loadedData)
   const secureAxios = useAxiosSecure()
+
+  useEffect(() => {
+    document.title = "Homepage | Manage My Food | Manage Single Food"
+ }, []);
 
   const handleDelevered = (val) => {
 

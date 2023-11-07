@@ -15,10 +15,6 @@ const FeaturedFood = () => {
     secureAxios.get(url)
       .then(res => setDatas(res.data))
   }, [])
-  console.log(datas);
-
-
-
 
 
   return (
@@ -26,7 +22,7 @@ const FeaturedFood = () => {
       <SectionHeading big={"Featured Food"} small={"Share a bite with us !"} />
       <div className="flex flex-wrap justify-around gap-10">
         {
-          datas?.slice(2,8).map(one => <SingleCardFeaturedFood data={one} key={one._id} />)
+          datas?.slice(2, 8).map(one => <SingleCardFeaturedFood data={one} key={one._id} />)
         }
       </div>
       <div className=" mt-10 flex justify-center">

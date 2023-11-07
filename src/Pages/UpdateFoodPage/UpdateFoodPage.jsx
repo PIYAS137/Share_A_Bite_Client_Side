@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom"
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
 import Swal from 'sweetalert2'
@@ -10,19 +10,18 @@ const UpdateFoodPage = () => {
     const navigate = useNavigate()
 
 
+    useEffect(() => {
+        document.title = "Homepage | Manage My Food | Edit"
+     }, []);
+
+
     const [food_name, setFood_name] = useState(loadedData.food_name)
     const [food_img, setFood_img] = useState(loadedData.food_img)
     const [food_quantity, setFood_quantity] = useState(loadedData.food_quantity)
     const [pickup_location, setPickup_location] = useState(loadedData.pickup_location)
     const [expire_date, setExpire_date] = useState(loadedData.expire_date)
     const [additional_info, setAdditional_info] = useState(loadedData.additional_info)
-    // const [donar_name,setDonar_name]=useState('')
-    // const [donar_img,setDonar_img]=useState('')
-    // const [donar_email,setDonar_email]=useState('')
     const [updateFood_status, setUpdateFood_Status] = useState(loadedData.food_status)
-
-
-
 
 
 

@@ -22,9 +22,9 @@ const ManageMyFoodsPage = () => {
       })
   }, [datas])
 
-
-
-
+  React.useEffect(() => {
+    document.title = "Homepage | Manage My Food"
+ }, []);
 
   const handleDelete = (val) => {
 

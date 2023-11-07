@@ -12,6 +12,10 @@ const SingleFoodDetailsPage = () => {
   const secureAxios = useAxiosSecure()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    document.title = "Homepage | Available Food | Single Food View"
+ }, []);
+
 
   const [food_name, setFood_name] = useState(loadedData.food_name)
   const [food_img, setFood_img] = useState(loadedData.food_img)

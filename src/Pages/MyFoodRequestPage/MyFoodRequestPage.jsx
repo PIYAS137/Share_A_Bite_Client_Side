@@ -18,6 +18,10 @@ const MyFoodRequestPage = () => {
       })
   }, [])
 
+  useEffect(() => {
+    document.title = "Homepage | My Food Request"
+ }, []);
+
 
   const handleClickDeleteReq = (sid) => {
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
 import Swal from 'sweetalert2'
@@ -8,6 +8,10 @@ const AddFoodPage = () => {
   const secureAxios = useAxiosSecure()
   const {user} = useContext(AuthContext)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = "Homepage | Add Food"
+ }, []);
 
   const [food_name, setFood_name] = useState('')
   const [food_img, setFood_img] = useState('')
