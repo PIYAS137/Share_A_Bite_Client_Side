@@ -9,9 +9,7 @@ const MyFoodRequestPage = () => {
   const { user } = useContext(AuthContext)
   const secureAxios = useAxiosSecure()
   const url = `/getUserReqFood?email=${user.email}`
-
   const [datas, setDatas] = useState([])
-
 
   useEffect(() => {
     secureAxios.get(url)

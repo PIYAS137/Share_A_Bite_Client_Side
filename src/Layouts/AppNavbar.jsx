@@ -8,7 +8,7 @@ import { AuthContext } from '../Context/FirebaseAuthContext';
 
 const AppNavbar = () => {
 
-  const {user,UserLogOut}=useContext(AuthContext)
+  const { user, UserLogOut } = useContext(AuthContext)
 
 
 
@@ -39,11 +39,13 @@ const AppNavbar = () => {
 
 
 
-  const handleClickSignOut=()=>{{
-    UserLogOut()
-    .then()
-    .catch()
-  }}
+  const handleClickSignOut = () => {
+    {
+      UserLogOut()
+        .then()
+        .catch()
+    }
+  }
 
 
 
@@ -52,14 +54,17 @@ const AppNavbar = () => {
     <li><NavLink to='/'>Home</NavLink></li>
     <li><NavLink to='/availablefood'>Available Food</NavLink></li>
     <li><NavLink to='/addfood'>Add Food</NavLink></li>
-    <li><NavLink to='/managefood'>Manage My Food</NavLink></li>
+    {
+      user?.email &&
+      <li><NavLink to='/managefood'>Manage My Food</NavLink></li>
+    }
     <li><NavLink to='/foodreq'>My Food Request</NavLink></li>
   </>
 
 
 
   return (
-    <div className="navbar border rounded-b-xl sticky top-0 z-30 bg-white dark:bg-black">
+    <div className="navbar rounded-b-xl sticky top-0 z-30 bg-white dark:bg-black">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -81,10 +86,10 @@ const AppNavbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-      
-      {user?.photoURL && <img className=' w-12 mr-2 aspect-square object-cover rounded-full' src={user.photoURL}/>}
+
+        {user?.photoURL && <img className=' w-12 mr-2 aspect-square object-cover rounded-full' src={user.photoURL} />}
         {!user?.email ? <Link to={'/login'}><button className="btn">LogIn</button></Link> : <button onClick={handleClickSignOut} className="btn btn-error text-white">Sign Out</button>}
-      
+
       </div>
       <div className='ml-4 mr-2'>
         <label className="swap swap-rotate">

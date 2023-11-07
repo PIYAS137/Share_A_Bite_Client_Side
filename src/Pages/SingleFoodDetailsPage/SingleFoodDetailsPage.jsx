@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useLoaderData, useNavigate } from "react-router-dom"
-import useRemainingTime from "../../Hooks/useRemainingTime";
 import { AuthContext } from "../../Context/FirebaseAuthContext";
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure";
 import Swal from 'sweetalert2'
@@ -16,7 +15,6 @@ const SingleFoodDetailsPage = () => {
 
   const [food_name, setFood_name] = useState(loadedData.food_name)
   const [food_img, setFood_img] = useState(loadedData.food_img)
-  const [food_quantity, setFood_quantity] = useState('')
   const [pickup_location, setPickup_location] = useState(loadedData.pickup_location)
   const [expire_date, setExpire_date] = useState(loadedData.expire_date)
   const [requestNote, setRequestNote] = useState('')
@@ -115,11 +113,6 @@ const SingleFoodDetailsPage = () => {
 
       }
     });
-
-
-
-
-
   }
 
 
@@ -132,13 +125,13 @@ const SingleFoodDetailsPage = () => {
         <h1 className=" text-center text-3xl font-bold dark:text-white">Single Food View</h1>
 
         <div className="my-12 flex justify-center">
-          <div className=" grid grid-cols-3 max-w-xl rounded-2xl overflow-hidden border border-red-300 gap-3 items-center">
+          <div className=" grid grid-cols-3 max-w-xl rounded-2xl overflow-hidden border border-green-200 gap-3 items-center">
             <div className=" col-span-1">
               <img className=" w-full" src={loadedData.donar_img} alt="" />
             </div>
             <div className="col-span-2 px-5 ">
               <p className=" font-semibold">Donar Name : {loadedData?.donar_name ? loadedData.donar_name : "Default Donar"}</p>
-              <p className=" font-semibold">Donar Location : {loadedData.pickup_location}</p>
+              <p className=" font-semibold">Pickup Location : {loadedData.pickup_location}</p>
             </div>
           </div>
         </div>
@@ -150,7 +143,7 @@ const SingleFoodDetailsPage = () => {
           <div className=" flex flex-col md:items-start justify-center space-y-3 items-center">
             <p className="font-semibold text-lg">Food name : {loadedData.food_name}</p>
             <p className="font-semibold text-lg">Food quantity : {loadedData.food_quantity} </p>
-            <p className="font-semibold text-lg">Expire date/time : {loadedData.expire_date} </p>
+            <p className="font-semibold text-lg">Expire date : {loadedData.expire_date} </p>
             <p className="font-semibold text-lg">Expire time : {remainingTime} </p>
             <p className="font-semibold text-lg">Additional Info : {additionalInfo} </p>
 
@@ -237,9 +230,9 @@ const SingleFoodDetailsPage = () => {
                     </div>
                     <div className="form-control w-full md:ml-5">
                       <label className="label">
-                        <span className="label-text dark:text-black">Req Date</span>
+                        <span className="label-text dark:text-black">Expire Date</span>
                       </label>
-                      <input disabled onChange={e => setRequest_date(e.target.value)} value={request_date} type="date" placeholder="food id" className="input input-bordered w-full" required />
+                      <input disabled onChange={e => setExpire_date(e.target.value)} value={expire_date} type="date" placeholder="food id" className="input input-bordered w-full" required />
                     </div>
                   </div>
 

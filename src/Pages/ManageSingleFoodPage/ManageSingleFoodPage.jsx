@@ -11,9 +11,8 @@ const ManageSingleFoodPage = () => {
   const loadedData = useLoaderData()
   const [datas, setDatas] = useState(loadedData)
   const secureAxios = useAxiosSecure()
-  console.log(datas);
 
-  const handleDelevered = (sid) => {
+  const handleDelevered = (val) => {
 
 
     Swal.fire({
@@ -27,15 +26,13 @@ const ManageSingleFoodPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        const url = `/deleverFood/${sid}`
-        const delv = { isDelevered: true }
+        const url = `/deleverFood/${val._id}`
+        const delv = { isDelevered: true,requset_food_id : val.requset_food_id }
         secureAxios.patch(url, delv)
           .then(res => {
-            if (res.data.modifiedCount > 0) {
-
-
-              const exceptOne = datas.find(one => one._id === sid)
-              const remainAll = datas.filter(one => one._id !== sid)
+            if (res.data.deletedCount > 0) {
+              const exceptOne = datas.find(one => one._id === val._id)
+              const remainAll = datas.filter(one => one._id !== val._id)
               exceptOne.isDelevered = true;
               // console.log(exceptOne);
               const tempArr = [exceptOne, ...remainAll]
@@ -103,7 +100,7 @@ const ManageSingleFoodPage = () => {
                           one.isDelevered ?
                             <button disabled className=" text-green-500  font-semibold">Delevered</button>
                             :
-                            <button onClick={() => handleDelevered(one._id)} className="btn btn-error text-white btn-xs">Pending</button>
+                            <button onClick={() => handleDelevered(one)} className="btn btn-error text-white btn-xs">Pending</button>
                         }
                       </td>
 

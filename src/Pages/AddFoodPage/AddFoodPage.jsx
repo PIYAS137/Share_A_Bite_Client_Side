@@ -2,10 +2,12 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
 import useAxiosSecure from "../../SecureAxiosHook/useAxiosSecure"
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom"
 
 const AddFoodPage = () => {
   const secureAxios = useAxiosSecure()
   const {user} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [food_name, setFood_name] = useState('')
   const [food_img, setFood_img] = useState('')
@@ -49,6 +51,7 @@ const AddFoodPage = () => {
             setPickup_location('')
             setExpire_date('')
             setAdditional_info('')
+            navigate('/availablefood')
           }
         }).catch(err=>{
           console.log(err);
