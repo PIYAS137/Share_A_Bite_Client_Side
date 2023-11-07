@@ -7,7 +7,6 @@ import Swal from 'sweetalert2'
 
 
 
-
 const ManageMyFoodsPage = () => {
 
 
@@ -57,31 +56,7 @@ const ManageMyFoodsPage = () => {
           })
       }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
 
   const data = React.useMemo(() => {
     return datas?.map((item, index) => ({
@@ -170,7 +145,16 @@ const ManageMyFoodsPage = () => {
         <h1 className="text-center text-3xl my-16 mb-10 font-bold dark:text-white">
           Manage My Foods <br /><sub className="text-xs">[ React-Table , I try my best ]</sub>
         </h1>
-        <table {...getTableProps()}>
+
+        {
+          datas.length == 0 && 
+          <p className=" text-center bg-red-500 max-w-xl mx-auto rounded-xl
+         p-3 font-bold">You added no food</p>
+        }
+        
+        {
+          datas.length > 0 && 
+          <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, i) => (
               <tr className=" " key={i} {...headerGroup.getHeaderGroupProps()}>
@@ -208,9 +192,8 @@ const ManageMyFoodsPage = () => {
             })}
           </tbody>
         </table>
-        {/* ) : (
-          <div className=" text-center text-red-500 font-bold italic">You Added Nothing !</div>
-        )} */}
+        }
+
       </div>
     </div>
   );

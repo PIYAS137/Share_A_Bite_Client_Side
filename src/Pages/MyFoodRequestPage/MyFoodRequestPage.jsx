@@ -5,27 +5,6 @@ import Swal from 'sweetalert2'
 
 
 
-
-// const newFood = {
-//   food_name,
-//   food_img,
-//   requester_email: user.email,
-//   requester_name: user.displayName,
-//   requester_img: user.photoURL,
-//   request_date,
-//   requestNote,
-//   donate_money,
-//   requset_food_id: loadedData._id,
-//   isDelevered: false,
-//   food_status: true,
-//   donar_name: loadedData.donar_name,
-//   donar_img: loadedData.donar_img,
-//   pickup_location:loadedData.pickup_location,
-//   food_expire_date:loadedData.expireDate
-// }
-
-
-
 const MyFoodRequestPage = () => {
   const { user } = useContext(AuthContext)
   const secureAxios = useAxiosSecure()
@@ -74,19 +53,21 @@ const MyFoodRequestPage = () => {
 
 
 
-
-
-
-
-
-
-
-
   return (
     <div className=" h-screen">
       <h1 className=" text-center text-3xl my-16 mb-10 font-bold dark:text-white">My Food Request</h1>
       <div className="overflow-x-auto">
-        <table className="table  ">
+
+        {
+          datas.length == 0 &&
+          <p className=" text-center bg-red-500 max-w-xl mx-auto rounded-xl
+         py-3 font-bold">You have not requested any food</p>
+        }
+
+
+        {
+          datas.length > 0 && 
+          <table className="table  ">
           {/* head */}
           <thead>
             <tr>
@@ -144,6 +125,7 @@ const MyFoodRequestPage = () => {
             }
           </tbody>
         </table>
+        }
       </div>
     </div>
   )

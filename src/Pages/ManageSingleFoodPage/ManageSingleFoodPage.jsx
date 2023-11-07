@@ -48,45 +48,25 @@ const ManageSingleFoodPage = () => {
             }
           })
           .catch(err => console.log(err))
-
-
       }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 
 
   return (
     <div className=" h-screen">
-
-
-
       <div className="overflow-x-scroll md:overflow-hidden">
         <h1 className=" text-center text-3xl my-10 mb-10 font-bold dark:text-white">Manage Single Food Page</h1>
         <p className=" text-center py-10 text-purple-600">Requests for this food | Food ID :123123123</p>
 
-      {
-        datas.length === 0 && <p className=" text-center bg-red-500 max-w-xl mx-auto rounded-xl
+        {
+          datas.length === 0 && <p className=" text-center bg-red-500 max-w-xl mx-auto rounded-xl
          py-3 font-bold">No one request for this food !</p>
-      }
+        }
 
         {
           datas.length > 0 && <table className="table w-full overflow-x-scroll">
-            {/* head */}
             <thead>
               <tr className="bg-red-200 dark:bg-red-900">
                 <th className=" dark:text-white">Requester Image</th>
