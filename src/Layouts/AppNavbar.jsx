@@ -71,7 +71,7 @@ const AppNavbar = () => {
           </ul>
         </div>
         <div className=' flex items-center'>
-          <img width="45px" src={Logo} alt="" />
+          <Link to={'/'}><img width="45px" src={Logo} alt="" /></Link>
           <a className="btn btn-ghost normal-case text-xl hidden md:flex">Share A Bite</a>
         </div>
       </div>

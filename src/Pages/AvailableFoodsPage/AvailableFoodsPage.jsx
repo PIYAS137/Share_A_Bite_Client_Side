@@ -45,13 +45,11 @@ const AvailableFoodsPage = () => {
       <p className=" text-center mb-2 clear-left text-blue-400">{datas.length} food found </p>
       <motion.div style={{ scaleX }}>
         <form onSubmit={handleSubmit} className=" mb-7 flex justify-center">
-
           <input value={text} onChange={e => setText(e.target.value)} type="text" placeholder="search by food name" className="input border border-purple-900 dark:bg-gray-700 input-bordered input-md w-full max-w-xs" />
           <button className=" btn btn-primary ml-2">Search</button>
           {
             datas.length !== permanentData.length && <button onClick={() => setDatas(permanentData)} className=" btn btn-primary ml-2">Reset Data</button>
           }
-
         </form>
       </motion.div>
       <div className="flex flex-wrap justify-around gap-10">
