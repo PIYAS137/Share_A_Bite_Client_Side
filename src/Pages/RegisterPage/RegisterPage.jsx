@@ -76,7 +76,7 @@ const RegisterPage = () => {
         //     .then(res => {
         //         // implement backend code------------------<<<<<<
         //         const SendUser = { name, email, profile }
-        //         axios.post('http://localhost:5020/users', SendUser)
+        //         axios.post('https://assignment-11-server-side-teal-phi.vercel.app/users', SendUser)
         //             .then(res => {
         //                 if (res.data.insertedId) {
         //                     Swal.fire({

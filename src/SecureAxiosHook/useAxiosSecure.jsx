@@ -4,7 +4,7 @@ import { AuthContext } from '../Context/FirebaseAuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const secureAxios = axios.create({
-    baseURL: 'http://localhost:5020',
+    baseURL: 'https://assignment-11-server-side-teal-phi.vercel.app',
     withCredentials:true
 })
 
@@ -16,7 +16,7 @@ const useAxiosSecure = () => {
         secureAxios.interceptors.response.use(res => {
             return res
         }, err => {
-            if (err.response.status === 401 || err.response.status === 403) {
+            if (err.response?.status == 401 || err.response?.status == 403) {
                 UserLogOut()
                     .then(res => {
                         navigate('/login')

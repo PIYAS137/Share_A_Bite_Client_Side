@@ -40,7 +40,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/singlefoodview/:sid',
-                loader:({params})=>fetch(`http://localhost:5020/getFoods/${params.sid}`),
+                loader:({params})=>fetch(`https://assignment-11-server-side-teal-phi.vercel.app/getFoods/${params.sid}`),
                 element:<PrivateRoute><SingleFoodDetailsPage/></PrivateRoute>
             },
             {
@@ -53,7 +53,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:`/managesinglefood/:sid`,
-                loader:({params})=>fetch(`http://localhost:5020/manageSingle/${params.sid}`),
+                loader:({params})=>fetch(`https://assignment-11-server-side-teal-phi.vercel.app/manageSingle/${params.sid}`),
                 element:<PrivateRoute><ManageSingleFoodPage/></PrivateRoute>
             },
             {
@@ -62,7 +62,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/updatefood/:sid',
-                loader:({params})=>fetch(`http://localhost:5020/getFoods/${params.sid}`),
+                loader:({params})=>fetch(`https://assignment-11-server-side-teal-phi.vercel.app/getFoods/${params.sid}`),
                 element:<PrivateRoute><UpdateFoodPage/></PrivateRoute>
             }
             

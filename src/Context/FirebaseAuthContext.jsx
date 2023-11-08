@@ -33,17 +33,16 @@ const FirebaseAuthContext = ({ children }) => {
             setLoader(false)
             setUser(currentUser)
             const userEmailForToken = { email: currentUser?.email || user?.email };
-            const JWTurl = '/jwt'
-            const LogOuturl = '/logOut'
             if (currentUser) {
-                axios.post('http://localhost:5020/jwt', userEmailForToken, { withCredentials: true })
-                    .then(res => console.log(res))
-                    .catch(err => console.log(err))
-            } else {
-                axios.post('http://localhost:5020/logOut', userEmailForToken, { withCredentials: true })
+                axios.post('https://assignment-11-server-side-teal-phi.vercel.app/jwt', userEmailForToken, { withCredentials: true })
                     .then(res => console.log(res))
                     .catch(err => console.log(err))
             }
+            //  else {
+            //     axios.post('https://assignment-11-server-side-teal-phi.vercel.app/logOut', userEmailForToken, { withCredentials: true })
+            //         .then(res => console.log(res))
+            //         .catch(err => console.log(err))
+            // }
         })
         return () => {
             return unSubscribe()
