@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react"
 
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from "../Firebase/FirebaseConfig"
+import axios from "axios"
 
 
 
@@ -9,43 +10,56 @@ export const AuthContext = createContext(null)
 const FirebaseAuth = getAuth(app)
 const GoogleProvider = new GoogleAuthProvider()
 
-const FirebaseAuthContext = ({ children }) => {
-    const [user,setUser]=useState(null)
-    const [loader,setLoader]=useState(true)
 
-    const UserRegister=(email,pass)=>{
+const FirebaseAuthContext = ({ children }) => {
+    const [user, setUser] = useState(null)
+    const [loader, setLoader] = useState(true)
+
+    const UserRegister = (email, pass) => {
         setLoader(true)
-        return createUserWithEmailAndPassword(FirebaseAuth,email,pass)
+        return createUserWithEmailAndPassword(FirebaseAuth, email, pass)
     }
-    const UserLogin=(email,pass)=>{
+    const UserLogin = (email, pass) => {
         setLoader(true)
-        console.log(email,pass);
-        return signInWithEmailAndPassword(FirebaseAuth,email,pass)
+        console.log(email, pass);
+        return signInWithEmailAndPassword(FirebaseAuth, email, pass)
     }
-    const UserLogOut=()=>{
+    const UserLogOut = () => {
         setLoader(true)
         return signOut(FirebaseAuth)
     }
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(FirebaseAuth,(currentUser)=>{
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(FirebaseAuth, (currentUser) => {
             setLoader(false)
             setUser(currentUser)
+            const userEmailForToken = { email: currentUser?.email || user?.email };
+            const JWTurl = '/jwt'
+            const LogOuturl = '/logOut'
+            if (currentUser) {
+                axios.post('http://localhost:5020/jwt', userEmailForToken, { withCredentials: true })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+            } else {
+                axios.post('http://localhost:5020/logOut', userEmailForToken, { withCredentials: true })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+            }
         })
-        return ()=>{
+        return () => {
             return unSubscribe()
         }
-    },[user])
+    }, [user])
 
-    const updateUser=(val,name,photo)=>{
+    const updateUser = (val, name, photo) => {
         setLoader(true)
-        return updateProfile(val,{
-            displayName:name,
-            photoURL:photo
+        return updateProfile(val, {
+            displayName: name,
+            photoURL: photo
         })
     }
-    const LoginWithGoogle=()=>{
+    const LoginWithGoogle = () => {
         setLoader(true)
-        return signInWithPopup(FirebaseAuth,GoogleProvider)
+        return signInWithPopup(FirebaseAuth, GoogleProvider)
     }
 
 
