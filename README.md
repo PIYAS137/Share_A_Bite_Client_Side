@@ -1,6 +1,6 @@
 # [ assignment_category_0007 ]
 # Website Name : Share A Bite
-# [LIVE LINK]('https://share-a-bite-b0bdb.web.app/')
+# [LIVE LINK](https://share-a-bite-b0bdb.web.app)
 
 # Features :
 -   #### JWT for security :
