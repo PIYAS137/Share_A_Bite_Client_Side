@@ -38,16 +38,16 @@ const FirebaseAuthContext = ({ children }) => {
                     .then(res => console.log(res))
                     .catch(err => console.log(err))
             }
-            //  else {
-            //     axios.post('https://assignment-11-server-side-teal-phi.vercel.app/logOut', userEmailForToken, { withCredentials: true })
-            //         .then(res => console.log(res))
-            //         .catch(err => console.log(err))
-            // }
+             else {
+                axios.post('https://assignment-11-server-side-teal-phi.vercel.app/logOut', userEmailForToken, { withCredentials: true })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+            }
         })
         return () => {
             return unSubscribe()
         }
-    }, [user])
+    }, [])
 
     const updateUser = (val, name, photo) => {
         setLoader(true)
