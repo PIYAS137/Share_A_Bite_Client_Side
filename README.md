@@ -19,9 +19,3 @@
 -   #### Firebase Auth :
     Firebase is a backend system. Firebase Authentication is one of the most useful thing in the web development field. Many large company and corporation are used and using this backend services for authenticate their website ! Firebase mainly provide so many services but one of the most and free useful thing is Firebase Auth. Firebase auth is one of the most strong and useful system. Firebase provide us free auth system for our website. I use Firebase auth in this website for make authenticate the user. I have some private route and if you want to watch or visit those private routes you should be authenticate your identity. I use the Firebase Authentication here! I use email and password and Googgle auth system for this project!
 
-
--   ( Point-1 ) : Add a spinner when the data is in a loading state ( USED )
-
--   ( Point-2 ) : Explore and implement any of the animations from the Framer Motion ( USED )
--  ( Point-5 ) : Use Axios Custom Hook. [AxiosSecure] ( USED )
-
