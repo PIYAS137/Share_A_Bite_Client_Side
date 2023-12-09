@@ -30,17 +30,22 @@ const FirebaseAuthContext = ({ children }) => {
     }
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(FirebaseAuth, (currentUser) => {
-            setLoader(false)
             setUser(currentUser)
             const userEmailForToken = { email: currentUser?.email || user?.email };
             if (currentUser) {
                 axios.post('https://assignment-11-server-side-teal-phi.vercel.app/jwt', userEmailForToken, { withCredentials: true })
-                    .then(res => console.log(res))
+                    .then(res => {
+                        console.log(res);
+                        setLoader(false);
+                    })
                     .catch(err => console.log(err))
             }
-             else {
+            else {
                 axios.post('https://assignment-11-server-side-teal-phi.vercel.app/logOut', userEmailForToken, { withCredentials: true })
-                    .then(res => console.log(res))
+                    .then(res =>{
+                        console.log(res);
+                        setLoader(false);
+                    })
                     .catch(err => console.log(err))
             }
         })
