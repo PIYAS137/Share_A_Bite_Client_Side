@@ -3,7 +3,21 @@
 # [LIVE LINK](https://share-a-bite-b0bdb.web.app)
 # [Server Side LINK](https://github.com/PIYAS137/Share_A_Bite_Server_Side)
 
-# Features :
+
+Features I Use :
+- JSON Web Token (JWT)
+- Firebase Authentication
+- Tanstack Query
+- Axios (Interceptors)
+- SweetAlert
+- React Router DOM
+# Front End : React + Tailwind
+# Back End : Express.Js
+# Database : MongoDB
+
+
+
+# About Some Powerful Features :
 -   #### JWT for security :
     JSON Web Tokens (JWT) are a widely used method for securing communications between a client (in your case, a React project) and a backend server. They are particularly useful in modern web applications because they allow for stateless authentication, meaning the server doesn't need to keep track of session information for each client. When a user logs in or registers, the backend server generates a JWT. This token contains information about the user and possibly some additional data. It is digitally signed using a secret key known only to the server, ensuring its authenticity.For every subsequent request to protected routes or API endpoints, the client includes the JWT in the request header. This signals to the server that the user is authenticated.Its a widely used techlogy for secure an API and its really perform very good. I implement it in my project. JWT is my personally favourite feature in web programming !
 
