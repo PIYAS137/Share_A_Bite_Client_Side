@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion"
 
 
 const Slider = () => {
@@ -13,8 +14,8 @@ const Slider = () => {
                         <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
 
                         <div className=''>
-                            <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
-                            <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
+                            <Link to={'/availablefood'}><motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</motion.button></Link>
+                            <Link to={'/addfood'}><motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</motion.button></Link>
                         </div>
                     </div>
                 </div>

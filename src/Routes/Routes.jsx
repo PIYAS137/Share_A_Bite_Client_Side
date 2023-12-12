@@ -12,6 +12,7 @@ import ManageSingleFoodPage from '../Pages/ManageSingleFoodPage/ManageSingleFood
 import SingleFoodDetailsPage from '../Pages/SingleFoodDetailsPage/SingleFoodDetailsPage'
 import UpdateFoodPage from '../Pages/UpdateFoodPage/UpdateFoodPage'
 import PrivateRoute from '../Private/PrivateRoute'
+import ContactPage from '../Pages/ContactPage/ContactPage'
 
 
 
@@ -33,6 +34,10 @@ const routes = createBrowserRouter([
             {
                 path:'/register',
                 element:<RegisterPage/>
+            },
+            {
+                path:'/contact',
+                element:<ContactPage/>
             },
             {
                 path:'/availablefood',

@@ -54,6 +54,7 @@ const AppNavbar = () => {
       <li><NavLink to='/managefood'>Manage My Food</NavLink></li>
     }
     <li><NavLink to='/foodreq'>My Food Request</NavLink></li>
+    <li><NavLink to='/contact'>Contact</NavLink></li>
   </>
 
 

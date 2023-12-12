@@ -14,13 +14,10 @@ const FeaturedFood = () => {
   useEffect(() => {
     secureAxios.get(url)
       .then(res =>{
-        console.log(res);
-        console.log(res);
         setDatas(res?.data)
       })
   }, [])
 
-  console.log(datas);
 
 
   return (
